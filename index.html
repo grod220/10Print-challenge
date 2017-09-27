@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Canvas playground</title>
+    <style>
+    body {
+      margin: 0;
+    }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.canvas.width  = window.innerWidth;
+    ctx.canvas.height = window.innerHeight;
+
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    let scale = 65;
+    const yEnd = Math.ceil(canvas.height / scale);
+    const xEnd = Math.ceil(canvas.width / scale);
+    for (let y = 0; y < yEnd; y++) {
+      for (let x = 0; x < xEnd; x++) {
+        ctx.beginPath();
+        if (Math.random() > .5) {
+          ctx.moveTo(x*scale, y*scale);
+          ctx.lineTo(x*scale + scale, y*scale + scale);
+        } else {
+          ctx.moveTo(x*scale + scale, y*scale);
+          ctx.lineTo(x*scale, y*scale + scale);
+        }
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = '#a5a5a5';
+        ctx.stroke();
+      }
+    }
+    </script>
+  </body>
+</html>
